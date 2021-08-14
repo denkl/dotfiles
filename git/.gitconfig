@@ -1,0 +1,19 @@
+[user]
+	name = denkl
+	email = kolomytskyi@gmail.com
+[core]
+	editor = vim
+	autocrlf = false
+	safecrlf = true
+[alias]
+	b = branch -v
+	c = commit -m
+	co = checkout
+	nb = checkout -b
+	dc = diff --cached
+	s = status
+	unstage = reset HEAD
+	uncommit = reset --soft HEAD^
+	l = log --pretty=format:\"%C(dim green)%h%C(reset) - %C(dim white)(%cr)%C(reset) %s %C(dim white)- %cn%C(reset) %C(red)%d%C(reset)\" --abbrev-commit --graph
+[push]
+	default = matching
