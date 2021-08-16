@@ -17,3 +17,22 @@
 	l = log --pretty=format:\"%C(dim green)%h%C(reset) - %C(dim white)(%cr)%C(reset) %s %C(dim white)- %cn%C(reset) %C(red)%d%C(reset)\" --abbrev-commit --graph
 [push]
 	default = matching
+[pager]
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
+[diff]
+	colorMoved = default
+[delta]
+	navigate = true
+	line-numbers = true
+	line-numbers-left-format = ""
+	commit-style = bold
+	commit-decoration-style = none
+	file-style = bold
+	file-decoration-style = none
+	hunk-header-style = line-number syntax
+	hunk-header-file-style = none
+	hunk-header-decoration-style = none
+	hunk-header-line-number-style = none
