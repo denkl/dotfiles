@@ -1,6 +1,7 @@
 [user]
 	name = Denys Kolomytskyi
 	email = kolomytskyi@gmail.com
+	signingkey = 003C8903060BB673
 [core]
 	editor = vim
 	autocrlf = false
