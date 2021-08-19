@@ -34,6 +34,8 @@ if status is-interactive
     bind ! __history_previous_command
     bind '$' __history_previous_command_arguments
 
+    fzf_key_bindings
+
     bind W nextd-or-forward-word
 
     abbr --add --global e nvim
