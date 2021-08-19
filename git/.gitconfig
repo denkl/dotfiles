@@ -1,5 +1,5 @@
 [user]
-	name = denkl
+	name = Denys Kolomytskyi
 	email = kolomytskyi@gmail.com
 [core]
 	editor = vim
@@ -36,3 +36,5 @@
 	hunk-header-file-style = none
 	hunk-header-decoration-style = none
 	hunk-header-line-number-style = none
+[commit]
+	gpgsign = true
