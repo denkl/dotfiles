@@ -11,6 +11,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 " Precede each line with its line number
@@ -47,7 +49,7 @@ set wildignore=*/__pycache__/
 set statusline=
 set statusline+=%f          " File name
 set statusline+=\ %m        " Modified flag
-"set statusline+=\ [%{FugitiveHead()}]
+set statusline+=\ [%{FugitiveHead()}]
 set statusline+=\ %r        " Readonly flag
 set statusline+=\ %w        " Preview window flag
 set statusline+=\ %q        " Quickfix/Location list
@@ -103,10 +105,13 @@ nnoremap <leader>fr <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <leader>, <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>] :bnext<cr>
 nnoremap <leader>[ :bprevious<cr>
-nnoremap <leader>bd :bdelete<cr>
+nnoremap <leader>d :bdelete<cr>
 
 nnoremap <leader>: <cmd>lua require('telescope.builtin').commands()<cr>
 nnoremap <leader>/ <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
 nnoremap <leader><space> <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>H <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+nnoremap <leader>gl :Git log<cr>
+nnoremap <leader>gb :Git blame<cr>
 
