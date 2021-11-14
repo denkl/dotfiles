@@ -1,3 +1,18 @@
+" bootstrapping vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+call plug#end()
+
 " Precede each line with its line number
 set number
 
@@ -52,12 +67,6 @@ endif
 
 let mapleader="\<Space>"
 
-nnoremap <leader>bn :bnext<cr>
-nnoremap <leader>bp :bprevious<cr>
-nnoremap <leader>bl :buffers<cr>
-nnoremap <leader>bd :bdelete<cr>
-nnoremap <leader>bD :bdelete!<cr>
-
 " Behave like other capital letters
 nnoremap Y y$
 
@@ -78,3 +87,26 @@ inoremap ; ;<c-g>u
 " Moving text
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+    highlight = {
+        enable = true
+    }
+}
+EOF
+
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files()<cr>
+nnoremap <leader>fr <cmd>lua require('telescope.builtin').oldfiles()<cr>
+
+nnoremap <leader>, <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>] :bnext<cr>
+nnoremap <leader>[ :bprevious<cr>
+nnoremap <leader>bd :bdelete<cr>
+
+nnoremap <leader>: <cmd>lua require('telescope.builtin').commands()<cr>
+nnoremap <leader>/ <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
+nnoremap <leader><space> <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>H <cmd>lua require('telescope.builtin').help_tags()<cr>
+
