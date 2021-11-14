@@ -3,7 +3,7 @@
 	email = kolomytskyi@gmail.com
 	signingkey = B1119CA6846264E5
 [core]
-	editor = vim
+	editor = nvim
 	autocrlf = false
 	safecrlf = true
 [alias]
