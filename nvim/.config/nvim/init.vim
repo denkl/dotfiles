@@ -13,6 +13,8 @@ Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'neovim/nvim-lspconfig'
+
 call plug#end()
 
 " Precede each line with its line number
@@ -96,6 +98,10 @@ require'nvim-treesitter.configs'.setup {
         enable = true
     }
 }
+EOF
+
+lua << EOF
+require'lspconfig'.pyright.setup{}
 EOF
 
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
