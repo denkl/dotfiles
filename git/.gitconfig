@@ -25,6 +25,8 @@
 	show = delta
 [diff]
 	colorMoved = default
+[interactive]
+    diffFilter = delta --color-only
 [delta]
 	navigate = true
 	line-numbers = true
