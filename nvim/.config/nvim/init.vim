@@ -81,6 +81,9 @@ if maparg('<C-L>', 'n') ==# ''
     nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
+" Remove trailing whitespaces
+command CleanFile normal! :%s/\s\+$//g<CR>
+
 let mapleader="\<space>"
 
 " Behave like other capital letters
