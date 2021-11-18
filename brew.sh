@@ -6,6 +6,8 @@ brew update
 
 brew upgrade
 
+brew tap homebrew/cask-fonts
+
 brew install bat
 brew install coreutils
 brew install dust
