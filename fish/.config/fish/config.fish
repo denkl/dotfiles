@@ -2,6 +2,7 @@ if status is-interactive
 
     set --global fish_greeting
     set --global --export EDITOR nvim
+    set --global --export LC_ALL en_US.UTF-8
     set --export GPG_TTY (tty)
 
     starship init fish | source
