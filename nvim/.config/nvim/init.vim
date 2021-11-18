@@ -62,6 +62,8 @@ set statusline+=\ %4.l:     " Line number
 set statusline+=%-3.c       " Column number
 set statusline+=%4.p%%      " Percentage through file in lines
 
+set diffopt+=indent-heuristic,algorithm:patience
+
 au BufRead,BufNewFile *.conf set filetype=conf
 
 " Use <C-L> to clear the highlighting of :set hlsearch (tpope/vim-sensible)
