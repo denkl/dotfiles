@@ -44,6 +44,16 @@ set splitright
 " Put the new window below the current one
 set splitbelow
 
+" Do not wrap long lines
+set nowrap
+
+" Change the terminal title according to the currently active buffer
+set title
+
+" When searching, match case only when at least one char is upper
+set ignorecase
+set smartcase
+
 " Patterns to ignore when expanding command-line completions
 set wildignore+=*.pyc
 set wildignore=*/__pycache__/
@@ -115,11 +125,18 @@ nnoremap <leader>] :bnext<cr>
 nnoremap <leader>[ :bprevious<cr>
 nnoremap <leader>d :bdelete<cr>
 
+nnoremap <leader>w <c-w>w
+
+tnoremap <esc> <c-\><c-n>:bd!<cr>
+
 nnoremap <leader>: <cmd>lua require('telescope.builtin').commands()<cr>
 nnoremap <leader>/ <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
 nnoremap <leader><space> <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>H <cmd>lua require('telescope.builtin').help_tags()<cr>
 
+nnoremap <leader>G :Git<cr>
 nnoremap <leader>gl :Git log<cr>
 nnoremap <leader>gb :Git blame<cr>
+
+nnoremap K :lua vim.lsp.buf.hover()<cr>
 
