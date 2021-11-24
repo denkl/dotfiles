@@ -1,43 +1,43 @@
 [user]
-	name = Denys Kolomytskyi
-	email = kolomytskyi@gmail.com
-	signingkey = B1119CA6846264E5
+    name = Denys Kolomytskyi
+    email = kolomytskyi@gmail.com
+    signingkey = B1119CA6846264E5
 [core]
-	editor = nvim
-	autocrlf = false
-	safecrlf = true
+    editor = nvim
+    autocrlf = false
+    safecrlf = true
 [alias]
-	b = branch -v
-	c = commit -m
-	co = checkout
-	nb = checkout -b
-	dc = diff --cached
-	s = status
-	unstage = reset HEAD
-	uncommit = reset --soft HEAD^
-	l = log --pretty=format:\"%C(dim green)%h%C(reset) - %C(dim white)(%cr)%C(reset) %s %C(dim white)- %cn%C(reset) %C(red)%d%C(reset)\" --abbrev-commit --graph
+    b = branch -v
+    c = commit -m
+    co = checkout
+    nb = checkout -b
+    dc = diff --cached
+    s = status
+    unstage = reset HEAD
+    uncommit = reset --soft HEAD^
+    l = log --pretty=format:\"%C(dim green)%h%C(reset) - %C(dim white)(%cr)%C(reset) %s %C(dim white)- %cn%C(reset) %C(red)%d%C(reset)\" --abbrev-commit --graph
 [push]
-	default = matching
+    default = matching
 [pager]
-	diff = delta
-	log = delta
-	reflog = delta
-	show = delta
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
 [diff]
-	colorMoved = default
+    colorMoved = default
 [interactive]
     diffFilter = delta --color-only
 [delta]
-	navigate = true
-	line-numbers = true
-	line-numbers-left-format = ""
-	commit-style = bold
-	commit-decoration-style = none
-	file-style = bold
-	file-decoration-style = none
-	hunk-header-style = line-number syntax
-	hunk-header-file-style = none
-	hunk-header-decoration-style = none
-	hunk-header-line-number-style = none
+    navigate = true
+    line-numbers = true
+    line-numbers-left-format = ""
+    commit-style = bold
+    commit-decoration-style = none
+    file-style = bold
+    file-decoration-style = none
+    hunk-header-style = line-number syntax
+    hunk-header-file-style = none
+    hunk-header-decoration-style = none
+    hunk-header-line-number-style = none
 [commit]
-	gpgsign = true
+    gpgsign = true
