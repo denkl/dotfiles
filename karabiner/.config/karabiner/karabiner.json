@@ -65,7 +65,7 @@
                         ]
                     },
                     {
-                        "description": "right command -> ru",
+                        "description": "Right Command -> uk",
                         "manipulators": [
                             {
                                 "from": {
@@ -79,7 +79,7 @@
                                 "to_if_alone": [
                                     {
                                         "select_input_source": {
-                                            "language": "ru"
+                                            "language": "uk"
                                         }
                                     }
                                 ],
@@ -88,7 +88,7 @@
                         ]
                     },
                     {
-                        "description": "left option -> uk",
+                        "description": "Left Option -> uk",
                         "manipulators": [
                             {
                                 "from": {
@@ -102,7 +102,7 @@
                                 "to_if_alone": [
                                     {
                                         "select_input_source": {
-                                            "language": "uk"
+                                            "language": "ru"
                                         }
                                     }
                                 ],
