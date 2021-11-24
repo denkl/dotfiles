@@ -36,6 +36,7 @@ brew install youtube-dl
 brew install --cask kitty
 brew install --cask font-fira-code
 brew install --cask ngrok
+brew install --cask karabiner-elements
 
 brew cleanup
 
