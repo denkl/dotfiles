@@ -82,7 +82,7 @@ if maparg('<C-L>', 'n') ==# ''
 endif
 
 " Remove trailing whitespaces
-command CleanFile normal! :%s/\s\+$//g<CR>
+autocmd BufWritePre * :%s/\s\+$//e
 
 let mapleader="\<space>"
 
