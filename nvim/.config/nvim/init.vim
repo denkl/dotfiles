@@ -185,10 +185,3 @@ nnoremap <leader>H <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>G :Git<cr>
 nnoremap <leader>gl :Git log<cr>
 nnoremap <leader>gb :Git blame<cr>
-
-"nnoremap <silent> K :lua vim.lsp.buf.hover()<cr>
-"nnoremap <leader>lr :lua vim.lsp.buf.rename()<cr>
-"nnoremap <silent> gD :lua vim.lsp.buf.declaration()<cr>
-"nnoremap <silent> gd :lua vim.lsp.buf.definition()<cr>
-"nnoremap <leader>li :lua vim.lsp.buf.implementation()<cr>
-"nnoremap gr :lua vim.lsp.buf.references()<cr>
