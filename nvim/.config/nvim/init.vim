@@ -26,9 +26,6 @@ set relativenumber
 " Minimal number of screen lines to keep above and below the cursor
 set scrolloff=5
 
-" Possibility to have more than one unsaved buffers
-set hidden
-
 " Number of spaces to use for each step of (auto)indent
 set shiftwidth=4
 
@@ -76,18 +73,10 @@ set diffopt+=indent-heuristic,algorithm:patience
 
 au BufRead,BufNewFile *.conf set filetype=conf
 
-" Use <C-L> to clear the highlighting of :set hlsearch (tpope/vim-sensible)
-if maparg('<C-L>', 'n') ==# ''
-    nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-endif
-
 " Remove trailing whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
 let mapleader="\<space>"
-
-" Behave like other capital letters
-nnoremap Y y$
 
 " Make it centered
 nnoremap n nzzzv
