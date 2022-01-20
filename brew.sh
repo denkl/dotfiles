@@ -19,6 +19,7 @@ brew install git-delta
 brew install gnupg
 brew install htop
 brew install jq
+brew install kcat
 brew install kubectl
 brew install ncdu
 brew install neovim
