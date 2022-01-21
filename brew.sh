@@ -21,6 +21,7 @@ brew install htop
 brew install jq
 brew install kcat
 brew install kubectl
+brew install lazydocker
 brew install ncdu
 brew install neovim
 brew install node
