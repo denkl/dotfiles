@@ -6,6 +6,7 @@ brew update
 
 brew upgrade
 
+brew tap hashicorp/tap
 brew tap homebrew/cask-fonts
 
 brew install bat
@@ -17,6 +18,8 @@ brew install fzf
 brew install git
 brew install git-delta
 brew install gnupg
+brew install hashicorp/tap/terraform
+brew install hashicorp/tap/terraform-ls
 brew install htop
 brew install jq
 brew install kcat
@@ -35,10 +38,10 @@ brew install tokei
 brew install wget
 brew install youtube-dl
 
-brew install --cask kitty
 brew install --cask font-fira-code
-brew install --cask ngrok
 brew install --cask karabiner-elements
+brew install --cask kitty
+brew install --cask ngrok
 
 brew cleanup
 
