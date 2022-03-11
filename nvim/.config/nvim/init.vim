@@ -174,3 +174,6 @@ nnoremap <leader>H <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>G :Git<cr>
 nnoremap <leader>gl :Git log<cr>
 nnoremap <leader>gb :Git blame<cr>
+
+nnoremap <leader>ce :e $MYVIMRC<cr>
+nnoremap <leader>cr :source $MYVIMRC<cr>
