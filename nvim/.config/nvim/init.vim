@@ -15,6 +15,8 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'neovim/nvim-lspconfig'
 
+Plug 'hashivim/vim-terraform'
+
 call plug#end()
 
 " Precede each line with its line number
