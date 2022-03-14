@@ -178,4 +178,4 @@ nnoremap <leader>gl :Git log<cr>
 nnoremap <leader>gb :Git blame<cr>
 
 nnoremap <leader>ce :e $MYVIMRC<cr>
-nnoremap <leader>cr :source $MYVIMRC<cr>
+nnoremap <leader>cs :source $MYVIMRC<cr>
