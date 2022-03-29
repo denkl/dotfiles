@@ -27,6 +27,7 @@ brew install kubectl
 brew install lazydocker
 brew install ncdu
 brew install neovim
+brew install nghttp2
 brew install node
 brew install pv
 brew install pyenv
