@@ -33,6 +33,7 @@ brew install node
 brew install pv
 brew install pyenv
 brew install pyenv-virtualenv
+brew install ripgrep
 brew install starship
 brew install stow
 brew install telnet
