@@ -15,6 +15,7 @@ brew install dust
 brew install fd
 brew install ffmpeg
 brew install fish
+brew install fisher
 brew install fzf
 brew install git
 brew install git-delta

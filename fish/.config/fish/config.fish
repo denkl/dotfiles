@@ -1,5 +1,7 @@
 if status is-interactive
 
+    fish_add_path /opt/homebrew/bin
+
     set --global fish_greeting
     set --global --export EDITOR nvim
     set --global --export LC_ALL en_US.UTF-8
@@ -35,8 +37,6 @@ if status is-interactive
 
     bind ! __history_previous_command
     bind '$' __history_previous_command_arguments
-
-    fzf_key_bindings
 
     bind W nextd-or-forward-word
 
