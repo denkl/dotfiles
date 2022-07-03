@@ -20,6 +20,7 @@ brew install fzf
 brew install git
 brew install git-delta
 brew install gnupg
+brew install gopls
 brew install hashicorp/tap/terraform
 brew install hashicorp/tap/terraform-ls
 brew install htop
