@@ -42,6 +42,7 @@ brew install stow
 brew install telnet
 brew install tldr
 brew install tokei
+brew install tree
 brew install wget
 brew install youtube-dl
 
