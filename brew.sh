@@ -28,6 +28,7 @@ brew install jq
 brew install kcat
 brew install kubectl
 brew install lazydocker
+brew install lazygit
 brew install llvm
 brew install ncdu
 brew install neovim
