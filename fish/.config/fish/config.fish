@@ -43,3 +43,6 @@ if status is-interactive
     abbr --add --global e nvim
 
 end
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/denys/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/denys/Downloads/google-cloud-sdk/path.fish.inc'; end
