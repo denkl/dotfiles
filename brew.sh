@@ -9,6 +9,7 @@ brew upgrade
 brew tap hashicorp/tap
 brew tap homebrew/cask-fonts
 
+brew install azure-cli
 brew install bat
 brew install coreutils
 brew install dust
@@ -38,6 +39,7 @@ brew install pv
 brew install pyenv
 brew install pyenv-virtualenv
 brew install ripgrep
+brew install sphinx-doc
 brew install starship
 brew install stow
 brew install telnet
