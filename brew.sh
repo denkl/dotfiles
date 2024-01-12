@@ -17,6 +17,7 @@ brew install fd
 brew install ffmpeg
 brew install fish
 brew install fisher
+brew install font-hack-nerd-font
 brew install fzf
 brew install git
 brew install git-delta
