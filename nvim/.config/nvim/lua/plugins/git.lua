@@ -1,11 +1,11 @@
 return {
     {
         "tpope/vim-fugitive",
-        options = function()
-            vim.keymap.set("n", "<leader>G", "<cmd>Git<cr>")
-            vim.keymap.set("n", "<leader>gl", "<cmd>Git log<cr>")
-            vim.keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
-        end
+        keys = {
+            {"<leader>G", "<cmd>Git<cr>", desc = ":Git"},
+            {"<leader>gl", "<cmd>Git log<cr>"},
+            {"<leader>gb", "<cmd>Git blame<cr>"},
+        },
     },
     "tpope/vim-rhubarb",
     {
@@ -19,9 +19,36 @@ return {
                 changedelete = { text = "~" },
             },
             on_attach = function(bufnr)
-                vim.keymap.set("n", "<leader>gp", require("gitsigns").prev_hunk, { buffer = bufnr, desc = "[G]o to [p]revious hunk" })
-                vim.keymap.set("n", "<leader>gn", require("gitsigns").next_hunk, { buffer = bufnr, desc = "[G]o to [n]ext hunk" })
-                vim.keymap.set("n", "<leader>ph", require("gitsigns").preview_hunk, { buffer = bufnr, desc = "[P]review [h]unk" })
+                local gs = package.loaded.gitsigns
+
+                local function map(mode, l, r, opts)
+                    opts = opts or {}
+                    opts.buffer = bufnr
+                    vim.keymap.set(mode, l, r, opts)
+                end
+
+                map({ "n", "v" }, "]h", function()
+                    if vim.wo.diff then
+                        return "]h"
+                    end
+                    vim.schedule(function()
+                        gs.next_hunk()
+                    end)
+                    return "<Ignore>"
+                end, { expr = true, desc = "next hunk" })
+
+                map({ "n", "v" }, "[h", function()
+                    if vim.wo.diff then
+                        return "[h"
+                    end
+                    vim.schedule(function()
+                        gs.prev_hunk()
+                    end)
+                    return "<Ignore>"
+                end, { expr = true, desc = "previous hunk" })
+
+                map('n', '<leader>hp', gs.preview_hunk, { desc = 'preview git hunk' })
+                map('n', '<leader>hb', function() gs.blame_line { full = false } end, { desc = 'git blame line' })
             end,
         },
     }

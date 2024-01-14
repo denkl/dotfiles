@@ -9,13 +9,14 @@ return {
         configs.setup({
             ensure_installed = {
                 "bash",
-                "rst",
-                "markdown",
                 "dockerfile",
                 "go",
                 "lua",
+                "markdown",
                 "python",
+                "rst",
                 "terraform",
+                "vimdoc",
                 "yaml",
             },
             highlight = {

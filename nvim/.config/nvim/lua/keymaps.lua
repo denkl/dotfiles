@@ -15,7 +15,6 @@ vim.keymap.set("i", ".", ".<c-g>u")
 vim.keymap.set("i", "!", "!<c-g>u")
 vim.keymap.set("i", "?", "?<c-g>u")
 vim.keymap.set("i", ";", ";<c-g>u")
---vim.keymap.set()
 
 -- moving text
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
@@ -24,14 +23,10 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 -- insert inside brackets
 vim.keymap.set("n", "<leader>i", "i<cr><esc>O")
 
--- edit/source vimrc
-vim.keymap.set("n", "<leader>ce", "<cmd>edit $MYVIMRC<cr>", { desc = "vimrc [c]onfig [e]dit "})
-vim.keymap.set("n", "<leader>cs", "<cmd>source $MYVIMRC<cr>", { desc = "vimrc [c]onfig [s]ource "})
-
 -- window mappings
 vim.keymap.set("n", "<leader>w", "<c-w>w")
+vim.keymap.set("n", "<leader>q", "<cmd>close<cr>")
 
 -- buffer mappings
-vim.keymap.set("n", "<leader>]", "<cmd>bnext<cr>zz")
-vim.keymap.set("n", "<leader>[", "<cmd>bprevious<cr>zz")
-vim.keymap.set("n", "<leader>d", "<cmd>bdelete<cr>")
+vim.keymap.set("n", "]b", "<cmd>bnext<cr>zz")
+vim.keymap.set("n", "[b", "<cmd>bprevious<cr>zz")
