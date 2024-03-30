@@ -5,6 +5,9 @@ vim.wo.number = true
 -- show the line number relative to the line with the cursor
 vim.wo.relativenumber = true
 
+-- show which cursor is on
+vim.o.cursorline = true
+
 -- minimal number of screen lines to keep above and below the cursor
 vim.wo.scrolloff = 5
 
@@ -46,8 +49,13 @@ vim.wo.signcolumn = "yes"
 vim.o.undofile = true
 
 -- ms to wait for a mapped sequence to complete
-vim.o.timeoutlen = 500
+vim.o.timeoutlen = 300
+
+-- decrease update time
+vim.o.updatetime = 250
 
 -- options for Insert mode completion
 vim.o.completeopt = "menuone,noselect"
 
+-- show live substitute additionally in preview window
+vim.o.inccommand = 'split'
