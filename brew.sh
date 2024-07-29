@@ -48,7 +48,7 @@ brew install tldr
 brew install tokei
 brew install tree
 brew install wget
-brew install youtube-dl
+brew install yt-dlp
 
 brew install --cask font-fira-code
 brew install --cask insomnia
