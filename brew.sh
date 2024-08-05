@@ -7,7 +7,6 @@ brew update
 brew upgrade
 
 brew tap hashicorp/tap
-brew tap homebrew/cask-fonts
 
 brew install azure-cli
 brew install bat
@@ -51,7 +50,6 @@ brew install wget
 brew install yt-dlp
 
 brew install --cask font-fira-code
-brew install --cask insomnia
 brew install --cask karabiner-elements
 brew install --cask kitty
 brew install --cask ngrok
