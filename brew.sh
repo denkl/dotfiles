@@ -35,6 +35,7 @@ brew install ncdu
 brew install neovim
 brew install nghttp2
 brew install node
+brew install opentofu
 brew install pv
 brew install pyenv
 brew install pyenv-virtualenv
@@ -43,6 +44,7 @@ brew install sphinx-doc
 brew install starship
 brew install stow
 brew install telnet
+brew install tfenv
 brew install tldr
 brew install tokei
 brew install tree
