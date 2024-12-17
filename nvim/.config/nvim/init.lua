@@ -47,7 +47,7 @@ vim.o.diffopt = "indent-heuristic,algorithm:patience"
 vim.wo.signcolumn = "yes"
 
 -- ms to wait for a mapped sequence to complete
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 500
 
 -- decrease update time
 vim.o.updatetime = 250
@@ -103,6 +103,13 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagn
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { desc = 'Re[n]ame symbol references' })
+vim.keymap.set({'n', 'v'}, 'gra', vim.lsp.buf.code_action, { desc = 'Code [a]ction' })
+vim.keymap.set('n', 'grr', vim.lsp.buf.references, { desc = 'List symbol [r]eferences' })
+vim.keymap.set('n', 'gri', vim.lsp.buf.implementation, { desc = 'List [i]mplementations' })
+vim.keymap.set('n', 'gO', vim.lsp.buf.document_symbol, { desc = 'List [s]ymbols' })
+vim.keymap.set('i', '<c-S>', vim.lsp.buf.signature_help, {})
+
 
 -- highlight on yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -153,6 +160,61 @@ require("lazy").setup({
                 local statusline = require 'mini.statusline'
                 statusline.setup { use_icons = true }
             end
+        },
+        {
+            "nvim-treesitter/nvim-treesitter",
+            build = ":TSUpdate",
+            config = function()
+                require'nvim-treesitter.configs'.setup {
+                    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "python" },
+                    auto_install = false,
+                    highlight = {
+                        enable = true,
+                        disable = function(lang, buf)
+                            local max_filesize = 100 * 1024 -- 100 KB
+                            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                            if ok and stats and stats.size > max_filesize then
+                                return true
+                            end
+                        end,
+                        additional_vim_regex_highlighting = false,
+                    },
+                }
+            end
+        },
+        {
+            "neovim/nvim-lspconfig",
+            dependencies = {
+                { 'williamboman/mason.nvim', config = true },
+                'williamboman/mason-lspconfig.nvim',
+                'WhoIsSethDaniel/mason-tool-installer.nvim',
+                { 'j-hui/fidget.nvim', opts = {} },
+                --'hrsh7th/cmp-nvim-lsp',
+                {
+                    "folke/lazydev.nvim",
+                    ft = "lua",
+                    opts = {
+                        library = {
+                            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                        },
+                    },
+                },
+            },
+            config = function()
+                require("lspconfig").basedpyright.setup {
+                    settings = {
+                        basedpyright = {
+                            analysis = {
+                                diagnosticMode = "openFilesOnly",
+                                autoSearchPaths = true,
+                                useLibraryCodeForTypes = true,
+                                typeCheckingMode = "standard",
+                            },
+                        }
+                    }
+                }
+                require("lspconfig").lua_ls.setup {}
+            end,
         },
     },
   -- automatically check for plugin updates
