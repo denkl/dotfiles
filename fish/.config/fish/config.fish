@@ -7,6 +7,8 @@ if status is-interactive
     set --global --export LC_ALL en_US.UTF-8
     set --export GPG_TTY (tty)
 
+    set --global tide_right_prompt_items status cmd_duration context jobs direnv python go terraform
+
     pyenv init --path | source
     pyenv init - | source
     pyenv virtualenv-init - | source
