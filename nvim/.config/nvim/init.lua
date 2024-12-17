@@ -55,6 +55,15 @@ vim.o.updatetime = 250
 -- options for Insert mode completion
 vim.o.completeopt = "menuone,noselect"
 
+-- indent wrapped lines when wrap is set
+vim.o.breakindent = true
+
+-- save undo history
+vim.o.undofile = true
+
+
+-- clear highlight on <Esc>
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- make it centered
 vim.keymap.set("n", "n", "nzzzv", { silent = true })
@@ -95,7 +104,7 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagn
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 
--- highlight on yank
+-- highlight on yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank()
@@ -109,3 +118,46 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
     command = "%s/\\s\\+$//e"
 })
+
+
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Setup lazy.nvim
+require("lazy").setup({
+    spec = {
+        {
+            "folke/tokyonight.nvim",
+            lazy = false,
+            priority = 1000,
+            opts = {},
+        },
+        {
+            'echasnovski/mini.nvim',
+            version = '*',
+            config = function()
+                local statusline = require 'mini.statusline'
+                statusline.setup { use_icons = true }
+            end
+        },
+    },
+  -- automatically check for plugin updates
+  checker = { enabled = true },
+})
+
+vim.cmd[[colorscheme tokyonight-night]]
+--vim.cmd[[colorscheme habamax]]
