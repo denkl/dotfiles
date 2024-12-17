@@ -7,8 +7,6 @@ if status is-interactive
     set --global --export LC_ALL en_US.UTF-8
     set --export GPG_TTY (tty)
 
-    starship init fish | source
-
     pyenv init --path | source
     pyenv init - | source
     pyenv virtualenv-init - | source

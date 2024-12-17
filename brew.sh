@@ -41,7 +41,6 @@ brew install pyenv
 brew install pyenv-virtualenv
 brew install ripgrep
 brew install sphinx-doc
-brew install starship
 brew install stow
 brew install telnet
 brew install tfenv
