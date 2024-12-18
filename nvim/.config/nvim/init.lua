@@ -93,16 +93,11 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 -- insert inside brackets
 vim.keymap.set("n", "<leader>i", "i<cr><esc>O")
 
--- buffer switching
-vim.keymap.set("n", "]b", "<cmd>bnext<cr>")
-vim.keymap.set("n", "[b", "<cmd>bprevious<cr>")
-
 -- diagnostic mappings
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- TODO: remove once 0.11 released
 vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { desc = 'Re[n]ame symbol references' })
 vim.keymap.set({'n', 'v'}, 'gra', vim.lsp.buf.code_action, { desc = 'Code [a]ction' })
 vim.keymap.set('n', 'grr', vim.lsp.buf.references, { desc = 'List symbol [r]eferences' })
@@ -157,8 +152,8 @@ require("lazy").setup({
             'echasnovski/mini.nvim',
             version = '*',
             config = function()
-                local statusline = require 'mini.statusline'
-                statusline.setup { use_icons = true }
+                require('mini.statusline').setup { use_icons = true }
+                require('mini.bracketed').setup {}
             end
         },
         {
