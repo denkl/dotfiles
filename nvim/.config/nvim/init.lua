@@ -79,7 +79,7 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- add empty line above/below cursor
 -- TODO: remove once 0.11 released
 vim.keymap.set("n", "[<leader>", "mzO<esc>k`z")
-vim.keymap.set("n", "<leader>]", "mzo<esc>k`z")
+vim.keymap.set("n", "]<leader>", "mzo<esc>k`z")
 
 -- undo break points
 vim.keymap.set("i", ",", ",<c-g>u")
@@ -206,21 +206,31 @@ require("lazy").setup({
                         },
                     },
                 },
+                'saghen/blink.cmp',
             },
-            config = function()
-                require("lspconfig").basedpyright.setup {
-                    settings = {
-                        basedpyright = {
-                            analysis = {
-                                diagnosticMode = "openFilesOnly",
-                                autoSearchPaths = true,
-                                useLibraryCodeForTypes = true,
-                                typeCheckingMode = "off",
-                            },
+            opts = {
+                servers = {
+                    lua_ls = {},
+                    basedpyright = {
+                        settings = {
+                            basedpyright = {
+                                analysis = {
+                                    diagnosticMode = "openFilesOnly",
+                                    autoSearchPaths = true,
+                                    useLibraryCodeForTypes = true,
+                                    typeCheckingMode = "off",
+                                },
+                            }
                         }
                     }
                 }
-                require("lspconfig").lua_ls.setup {}
+            },
+            config = function(_, opts)
+                local lspconfig = require('lspconfig')
+                for server, config in pairs(opts.servers) do
+                    config.capabilities = require('blink.cmp').get_lsp_capabilities()
+                    lspconfig[server].setup(config)
+                end
 
                 vim.api.nvim_create_autocmd('LspAttach', {
                     group = vim.api.nvim_create_augroup('denkl-lsp-attach', { clear = true }),
@@ -330,8 +340,26 @@ require("lazy").setup({
 
                 require "utils.multigrep".setup()
             end
-        }
+        },
+        {
+            'saghen/blink.cmp',
+            --dependencies = 'rafamadriz/friendly-snippets',
+
+            version = 'v0.*',
+
+            opts = {
+                keymap = { preset = 'default' },
+
+                appearance = {
+                    use_nvim_cmp_as_default = true,
+                    nerd_font_variant = 'mono'
+                },
+
+                signature = { enabled = true }
+            },
+        },
     },
+
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
