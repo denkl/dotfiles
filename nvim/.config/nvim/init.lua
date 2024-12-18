@@ -145,13 +145,20 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     spec = {
         {
-            "folke/tokyonight.nvim",
+            "aktersnurra/no-clown-fiesta.nvim",
             lazy = false,
             priority = 1000,
-            opts = {},
-            init = function()
-                vim.cmd.colorscheme 'tokyonight-night'
-            end,
+            config = function()
+                local plugin = require "no-clown-fiesta"
+                plugin.setup({
+                    styles = {
+                        type = { bold = true },
+                        lsp = { underline = false },
+                        match_paren = { underline = true },
+                    }
+                })
+                return plugin.load()
+            end
         },
         {
             'echasnovski/mini.nvim',
