@@ -216,6 +216,70 @@ require("lazy").setup({
                 require("lspconfig").lua_ls.setup {}
             end,
         },
+        {
+            'nvim-telescope/telescope.nvim',
+            tag = '0.1.8',
+            dependencies = {
+                'nvim-lua/plenary.nvim',
+                { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+            },
+            config = function()
+                require('telescope').setup {
+                    extensions = {
+                        fzf = {}
+                    },
+                    pickers = {
+                        find_files = {
+                            theme = "ivy"
+                        },
+                        buffers = {
+                            theme = "ivy"
+                        },
+                        help_tags = {
+                            theme = "ivy"
+                        },
+                        live_grep = {
+                            theme = "ivy"
+                        },
+                        diagnostics = {
+                            theme = "ivy"
+                        },
+                        oldfiles = {
+                            theme = "ivy"
+                        },
+                    }
+                }
+
+                local builtin = require 'telescope.builtin'
+
+                vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [f]iles' })
+                vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Find buffers' })
+                vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind help' })
+                vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
+                vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[F]ind [R]esume' })
+                vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind recent files ("." for repeat)' })
+
+                vim.keymap.set('n', '<leader>f/', function()
+                    builtin.live_grep {
+                        grep_open_files = true,
+                        prompt_title = 'Live Grep in Open Files',
+                    }
+                end, { desc = '[S]earch [/] in Open Files' })
+
+                vim.keymap.set('n', '<leader>fp', function()
+                    require('telescope.builtin').find_files {
+                        cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy')
+                    }
+                end, { desc = '[F]ind [P]lugins file' })
+                vim.keymap.set('n', '<leader>fP', function()
+                    require('telescope.builtin').live_grep {
+                        cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy')
+                    }
+                end, { desc = '[F]ind in [P]lugins by grep' })
+
+                require "utils.multigrep".setup()
+            end
+        }
     },
   -- automatically check for plugin updates
   checker = { enabled = true },
