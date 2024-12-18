@@ -208,7 +208,7 @@ require("lazy").setup({
                                 diagnosticMode = "openFilesOnly",
                                 autoSearchPaths = true,
                                 useLibraryCodeForTypes = true,
-                                typeCheckingMode = "standard",
+                                typeCheckingMode = "off",
                             },
                         }
                     }
@@ -329,5 +329,4 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
---vim.cmd[[colorscheme tokyonight-night]]
 --vim.cmd[[colorscheme habamax]]
