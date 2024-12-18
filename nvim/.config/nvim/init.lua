@@ -77,6 +77,7 @@ vim.keymap.set("n", "g,", "g,zz")
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- add empty line above/below cursor
+-- TODO: remove once 0.11 released
 vim.keymap.set("n", "[<leader>", "mzO<esc>k`z")
 vim.keymap.set("n", "<leader>]", "mzo<esc>k`z")
 
@@ -148,6 +149,9 @@ require("lazy").setup({
             lazy = false,
             priority = 1000,
             opts = {},
+            init = function()
+                vim.cmd.colorscheme 'tokyonight-night'
+            end,
         },
         {
             'echasnovski/mini.nvim',
@@ -210,6 +214,50 @@ require("lazy").setup({
                     }
                 }
                 require("lspconfig").lua_ls.setup {}
+
+                vim.api.nvim_create_autocmd('LspAttach', {
+                    group = vim.api.nvim_create_augroup('denkl-lsp-attach', { clear = true }),
+                    callback = function(event)
+                        local map = function(keys, func, desc, mode)
+                            mode = mode or 'n'
+                            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc})
+                        end
+                        local builtin = require "telescope.builtin"
+
+                        map('gd', builtin.lsp_definitions, '[G]o to [D]efinition')
+                        map('gI', builtin.lsp_implementations, '[G]o to [I]mplementation')
+                        -- definition of *type*, not where it was *defined*
+                        map('<leader>D', builtin.lsp_type_definitions, 'Type [D]efinition')
+                        map('<leader>ds', builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
+                        map('<leader>ws', builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+                        map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+                        -- highlight references of the word under the cursor
+                        local client = vim.lsp.get_client_by_id(event.data.client_id)
+                        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+                            local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+                            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                                buffer = event.buf,
+                                group = highlight_augroup,
+                                callback = vim.lsp.buf.document_highlight,
+                            })
+
+                            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                                buffer = event.buf,
+                                group = highlight_augroup,
+                                callback = vim.lsp.buf.clear_references,
+                            })
+
+                            vim.api.nvim_create_autocmd('LspDetach', {
+                                group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+                                callback = function(event2)
+                                    vim.lsp.buf.clear_references()
+                                    vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+                                end,
+                            })
+                        end
+                    end,
+                })
             end,
         },
         {
@@ -281,5 +329,5 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
-vim.cmd[[colorscheme tokyonight-night]]
+--vim.cmd[[colorscheme tokyonight-night]]
 --vim.cmd[[colorscheme habamax]]
