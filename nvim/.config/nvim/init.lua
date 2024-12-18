@@ -76,8 +76,9 @@ vim.keymap.set("n", "g,", "g,zz")
 -- preserve cursor position on lines join
 vim.keymap.set("n", "J", "mzJ`z")
 
--- add blank line below cursor
-vim.keymap.set("n", "<cr>", "mzo<esc>k`z")
+-- add empty line above/below cursor
+vim.keymap.set("n", "[<leader>", "mzO<esc>k`z")
+vim.keymap.set("n", "<leader>]", "mzo<esc>k`z")
 
 -- undo break points
 vim.keymap.set("i", ",", ",<c-g>u")
