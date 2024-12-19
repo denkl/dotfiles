@@ -327,6 +327,13 @@ require("lazy").setup({
                     }
                 end, { desc = '[S]earch [/] in Open Files' })
 
+                vim.keymap.set('n', '<leader>fD', function()
+                    require('telescope.builtin').find_files {
+                        cwd = '~/.dotfiles',
+                        hidden = true,
+                    }
+                end, { desc = '[F]ind [D]otfiles' })
+
                 vim.keymap.set('n', '<leader>fp', function()
                     require('telescope.builtin').find_files {
                         cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy')
