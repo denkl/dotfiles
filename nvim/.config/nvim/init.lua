@@ -107,6 +107,9 @@ vim.keymap.set('n', 'gri', vim.lsp.buf.implementation, { desc = 'List [i]mplemen
 vim.keymap.set('n', 'gO', vim.lsp.buf.document_symbol, { desc = 'List [s]ymbols' })
 vim.keymap.set('i', '<c-S>', vim.lsp.buf.signature_help, {})
 
+-- normal mode in terminal
+vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
+
 
 -- highlight on yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
