@@ -96,12 +96,14 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 vim.keymap.set("n", "<leader>i", "i<cr><esc>O")
 
 -- diagnostic mappings
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float,
+    { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,
+    { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- TODO: remove once 0.11 released
 vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { desc = 'Re[n]ame symbol references' })
-vim.keymap.set({'n', 'v'}, 'gra', vim.lsp.buf.code_action, { desc = 'Code [a]ction' })
+vim.keymap.set({ 'n', 'v' }, 'gra', vim.lsp.buf.code_action, { desc = 'Code [a]ction' })
 vim.keymap.set('n', 'grr', vim.lsp.buf.references, { desc = 'List symbol [r]eferences' })
 vim.keymap.set('n', 'gri', vim.lsp.buf.implementation, { desc = 'List [i]mplementations' })
 vim.keymap.set('n', 'gO', vim.lsp.buf.document_symbol, { desc = 'List [s]ymbols' })
@@ -130,17 +132,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo,
+        lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out,                            "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -175,7 +178,7 @@ require("lazy").setup({
             "nvim-treesitter/nvim-treesitter",
             build = ":TSUpdate",
             config = function()
-                require'nvim-treesitter.configs'.setup {
+                require 'nvim-treesitter.configs'.setup {
                     ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "python" },
                     auto_install = false,
                     highlight = {
@@ -198,7 +201,7 @@ require("lazy").setup({
                 { 'williamboman/mason.nvim', config = true },
                 'williamboman/mason-lspconfig.nvim',
                 'WhoIsSethDaniel/mason-tool-installer.nvim',
-                { 'j-hui/fidget.nvim', opts = {} },
+                { 'j-hui/fidget.nvim',       opts = {} },
                 --'hrsh7th/cmp-nvim-lsp',
                 {
                     "folke/lazydev.nvim",
@@ -216,9 +219,11 @@ require("lazy").setup({
                     lua_ls = {},
                     basedpyright = {
                         root_dir = function(fname)
-                            return require('lspconfig.util').root_pattern({ '.git', 'pyproject.toml'})(fname)
+                            return require('lspconfig.util').root_pattern({ '.git', 'pyproject.toml' })(
+                                fname)
                         end,
                         settings = {
+                            disableOrganizeImports = true,
                             basedpyright = {
                                 analysis = {
                                     diagnosticMode = "openFilesOnly",
@@ -226,9 +231,33 @@ require("lazy").setup({
                                     useLibraryCodeForTypes = true,
                                     typeCheckingMode = "off",
                                 },
-                            }
+                            },
+                            python = {
+                                analysis = {
+                                    -- Ignore all files for analysis to exclusively use Ruff for linting
+                                    ignore = { '*' },
+                                },
+                            },
                         }
-                    }
+                    },
+                    ruff = {
+                        configurationPreference = "filesystemFirst",
+                        root_dir = function(fname)
+                            return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })
+                                    [1])
+                                or require('lspconfig.util').root_pattern('pyproject.toml',
+                                    'ruff.toml', '.ruff.toml')(
+                                    fname)
+                        end,
+                        settings = {
+                            lint = {
+                                preview = true
+                            },
+                            format = {
+                                preview = true
+                            },
+                        }
+                    },
                 }
             },
             config = function(_, opts)
@@ -243,7 +272,8 @@ require("lazy").setup({
                     callback = function(event)
                         local map = function(keys, func, desc, mode)
                             mode = mode or 'n'
-                            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc})
+                            vim.keymap.set(mode, keys, func,
+                                { buffer = event.buf, desc = 'LSP: ' .. desc })
                         end
                         local builtin = require "telescope.builtin"
 
@@ -252,13 +282,20 @@ require("lazy").setup({
                         -- definition of *type*, not where it was *defined*
                         map('<leader>D', builtin.lsp_type_definitions, 'Type [D]efinition')
                         map('<leader>ds', builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
-                        map('<leader>ws', builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+                        map('<leader>ws', builtin.lsp_dynamic_workspace_symbols,
+                            '[W]orkspace [S]ymbols')
                         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-                        -- highlight references of the word under the cursor
                         local client = vim.lsp.get_client_by_id(event.data.client_id)
-                        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-                            local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+
+                        if not client then return end
+
+                        -- highlight references of the word under the cursor
+                        if client.supports_method('textDocument/documentHighlight') then
+                            local highlight_augroup = vim.api.nvim_create_augroup(
+                                'denkl-lsp-highlight',
+                                { clear = false })
+
                             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
                                 buffer = event.buf,
                                 group = highlight_augroup,
@@ -272,11 +309,21 @@ require("lazy").setup({
                             })
 
                             vim.api.nvim_create_autocmd('LspDetach', {
-                                group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+                                group = vim.api.nvim_create_augroup('denkl-lsp-detach',
+                                    { clear = true }),
                                 callback = function(event2)
                                     vim.lsp.buf.clear_references()
-                                    vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+                                    vim.api.nvim_clear_autocmds { group = 'denkl-lsp-highlight', buffer = event2.buf }
                                 end,
+                            })
+                        end
+                        -- format on save
+                        if client.supports_method('textDocument/formatting') then
+                            vim.api.nvim_create_autocmd('BufWritePre', {
+                                buffer = event.buf,
+                                callback = function()
+                                    vim.lsp.buf.format({ bufnr = event.buf, id = client.id })
+                                end
                             })
                         end
                     end,
@@ -325,9 +372,11 @@ require("lazy").setup({
                 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [f]iles' })
                 vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Find buffers' })
                 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind help' })
-                vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
+                vim.keymap.set('n', '<leader>fd', builtin.diagnostics,
+                    { desc = '[F]ind [D]iagnostics' })
                 vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[F]ind [R]esume' })
-                vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind recent files ("." for repeat)' })
+                vim.keymap.set('n', '<leader>f.', builtin.oldfiles,
+                    { desc = '[F]ind recent files ("." for repeat)' })
 
                 vim.keymap.set('n', '<leader>f/', function()
                     builtin.live_grep {
@@ -376,8 +425,8 @@ require("lazy").setup({
         },
     },
 
-  -- automatically check for plugin updates
-  checker = { enabled = true },
+    -- automatically check for plugin updates
+    checker = { enabled = true },
 })
 
 --vim.cmd[[colorscheme habamax]]
