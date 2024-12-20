@@ -424,7 +424,8 @@ require("lazy").setup({
                 signature = { enabled = true }
             },
         },
-        { 'echasnovski/mini.operators', version = false, opts = {} }
+        { 'echasnovski/mini.operators', version = '*', opts = {} },
+        { 'echasnovski/mini.icons',     version = '*', opts = {} },
     },
 
     -- automatically check for plugin updates
