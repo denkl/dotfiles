@@ -155,7 +155,7 @@ require("lazy").setup({
                 local plugin = require "no-clown-fiesta"
                 plugin.setup({
                     styles = {
-                        type = { bold = true },
+                        type = { bold = false },
                         lsp = { underline = false },
                         match_paren = { underline = true },
                     }
@@ -215,6 +215,9 @@ require("lazy").setup({
                 servers = {
                     lua_ls = {},
                     basedpyright = {
+                        root_dir = function(fname)
+                            return require('lspconfig.util').root_pattern({ '.git', 'pyproject.toml'})(fname)
+                        end,
                         settings = {
                             basedpyright = {
                                 analysis = {
