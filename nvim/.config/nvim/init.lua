@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -423,6 +424,7 @@ require("lazy").setup({
                 signature = { enabled = true }
             },
         },
+        { 'echasnovski/mini.operators', version = false, opts = {} }
     },
 
     -- automatically check for plugin updates
