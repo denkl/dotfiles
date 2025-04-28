@@ -105,7 +105,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,
 -- TODO: remove once 0.11 released
 vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { desc = 'Re[n]ame symbol references' })
 vim.keymap.set({ 'n', 'v' }, 'gra', vim.lsp.buf.code_action, { desc = 'Code [a]ction' })
-vim.keymap.set('n', 'grr', vim.lsp.buf.references, { desc = 'List symbol [r]eferences' })
+vim.keymap.set('n', 'fR', vim.lsp.buf.references, { desc = 'List symbol [r]eferences' })
 vim.keymap.set('n', 'gri', vim.lsp.buf.implementation, { desc = 'List [i]mplementations' })
 vim.keymap.set('n', 'gO', vim.lsp.buf.document_symbol, { desc = 'List [s]ymbols' })
 vim.keymap.set('i', '<c-S>', vim.lsp.buf.signature_help, {})
@@ -180,7 +180,7 @@ require("lazy").setup({
             build = ":TSUpdate",
             config = function()
                 require 'nvim-treesitter.configs'.setup {
-                    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "python" },
+                    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "python", "terraform", "go" },
                     auto_install = false,
                     highlight = {
                         enable = true,
@@ -218,6 +218,7 @@ require("lazy").setup({
             opts = {
                 servers = {
                     lua_ls = {},
+                    gopls = {},
                     basedpyright = {
                         root_dir = function(fname)
                             return require('lspconfig.util').root_pattern({ '.git', 'pyproject.toml' })(
@@ -426,10 +427,57 @@ require("lazy").setup({
         },
         { 'echasnovski/mini.operators', version = '*', opts = {} },
         { 'echasnovski/mini.icons',     version = '*', opts = {} },
+        { 'echasnovski/mini.jump2d',    version = '*', opts = {} },
+        { 'echasnovski/mini.files',     version = '*', opts = {} },
     },
 
     -- automatically check for plugin updates
     checker = { enabled = true },
+})
+
+local miniclue = require('mini.clue')
+miniclue.setup({
+    triggers = {
+        -- Leader triggers
+        { mode = 'n', keys = '<Leader>' },
+        { mode = 'x', keys = '<Leader>' },
+
+        -- Built-in completion
+        { mode = 'i', keys = '<C-x>' },
+
+        -- `g` key
+        { mode = 'n', keys = 'g' },
+        { mode = 'x', keys = 'g' },
+
+        -- Marks
+        { mode = 'n', keys = "'" },
+        { mode = 'n', keys = '`' },
+        { mode = 'x', keys = "'" },
+        { mode = 'x', keys = '`' },
+
+        -- Registers
+        { mode = 'n', keys = '"' },
+        { mode = 'x', keys = '"' },
+        { mode = 'i', keys = '<C-r>' },
+        { mode = 'c', keys = '<C-r>' },
+
+        -- Window commands
+        { mode = 'n', keys = '<C-w>' },
+
+        -- `z` key
+        { mode = 'n', keys = 'z' },
+        { mode = 'x', keys = 'z' },
+    },
+
+    clues = {
+        -- Enhance this by adding descriptions for <Leader> mapping groups
+        miniclue.gen_clues.builtin_completion(),
+        miniclue.gen_clues.g(),
+        miniclue.gen_clues.marks(),
+        miniclue.gen_clues.registers(),
+        miniclue.gen_clues.windows(),
+        miniclue.gen_clues.z(),
+    },
 })
 
 --vim.cmd[[colorscheme habamax]]
