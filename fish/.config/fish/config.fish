@@ -8,9 +8,6 @@ if status is-interactive
     set --export GPG_TTY (tty)
 
     set --global tide_right_prompt_items status cmd_duration context jobs direnv python go terraform
-    set --global tide_pwd_color_dirs 51657b
-    set --global tide_pwd_color_anchors 7e97ab
-    set --global tide_git_color_branch 578266
 
     pyenv init --path | source
     pyenv init - | source
@@ -48,4 +45,4 @@ if status is-interactive
 end
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/denys/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/denys/Downloads/google-cloud-sdk/path.fish.inc'; end
+if [ -f '/Users/denkl/.google-cloud-sdk/path.fish.inc' ]; . '/Users/denkl/.google-cloud-sdk/path.fish.inc'; end
