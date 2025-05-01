@@ -35,6 +35,7 @@ brew install lazydocker
 brew install lazygit
 brew install llvm
 brew install mitmproxy
+brew install mprocs
 brew install ncdu
 brew install neovim
 brew install nghttp2
