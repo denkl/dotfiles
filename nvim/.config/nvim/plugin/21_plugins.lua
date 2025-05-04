@@ -35,6 +35,7 @@ later(function()
     vim.lsp.enable('gopls')
     vim.lsp.enable('basedpyright')
     vim.lsp.enable('ruff')
+    vim.lsp.enable('clangd')
 end)
 
 later(function()
