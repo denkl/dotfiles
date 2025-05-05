@@ -105,3 +105,4 @@ later(function() require('mini.operators').setup({
     replace = { prefix = 'gX' }
 }) end)
 later(function() require('mini.completion').setup() end)
+later(function() require('mini.indentscope').setup() end)
