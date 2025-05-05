@@ -104,3 +104,4 @@ later(function() require('mini.bracketed').setup() end)
 later(function() require('mini.operators').setup({
     replace = { prefix = 'gX' }
 }) end)
+later(function() require('mini.completion').setup() end)

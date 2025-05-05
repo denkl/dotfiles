@@ -37,7 +37,3 @@ later(function()
     vim.lsp.enable('ruff')
     vim.lsp.enable('clangd')
 end)
-
-later(function()
-    add('saghen/blink.cmp')
-end)
