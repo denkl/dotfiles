@@ -106,3 +106,5 @@ later(function() require('mini.operators').setup({
 }) end)
 later(function() require('mini.completion').setup() end)
 later(function() require('mini.indentscope').setup() end)
+later(function() require('mini.git').setup() end)
+later(function() require('mini.diff').setup() end)

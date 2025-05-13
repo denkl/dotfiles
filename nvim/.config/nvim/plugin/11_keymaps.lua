@@ -40,6 +40,11 @@ local nmap_leader = function(suffix, rhs, desc, opts)
     opts.desc = desc
     vim.keymap.set('n', '<Leader>' .. suffix, rhs, opts)
 end
+local xmap_leader = function(suffix, rhs, desc, opts)
+  opts = opts or {}
+  opts.desc = desc
+  vim.keymap.set('x', '<Leader>' .. suffix, rhs, opts)
+end
 
 -- f is fuzzy
 nmap_leader('fb', '<Cmd>Pick buffers<CR>', 'Buffers')
@@ -72,3 +77,8 @@ nmap_leader('ls', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>', 'Document symbol
 nmap_leader('ed', '<Cmd>lua MiniFiles.open()<CR>', 'Directory')
 nmap_leader('ef', '<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>', 'File directory')
 nmap_leader('eq', '<Cmd>lua Config.toggle_quickfix()<CR>', 'Quickfix')
+
+-- g is git
+nmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>', 'Show at cursor')
+xmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>', 'Show at selection')
+nmap_leader('go', '<Cmd>lua MiniDiff.toggle_overlay()<CR>', 'Toggle overlay')
