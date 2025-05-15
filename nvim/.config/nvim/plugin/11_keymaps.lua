@@ -61,6 +61,9 @@ nmap_leader('fl', '<Cmd>Pick buf_lines<CR>', 'Lines (all)')
 nmap_leader('fP', function()
     MiniPick.builtin.files(nil, { source = { cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'site') } })
 end, 'Plugins')
+nmap_leader('fD', function()
+    MiniPick.builtin.files({ tool = "git" } , {source = { cwd = "~/.dotfiles" } })
+end, 'Dotfiles')
 
 -- l is LSP
 nmap_leader('ld', '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Definition')
