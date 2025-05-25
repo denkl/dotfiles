@@ -40,7 +40,17 @@ if status is-interactive
 
     bind W nextd-or-forward-word
 
-    abbr --add --global e nvim
+    abbr --add e nvim
+
+    abbr --command git s status
+    abbr --command git nb checkout -b
+    abbr --command git dc diff --cached
+    abbr --command git rs restore --staged
+    abbr --command git uncommit reset --soft HEAD^
+    abbr --command git c --set-cursor commit -m '"%"'
+    abbr --command git C --set-cursor commit -m '"$(git branch --show-current) %"'
+    abbr --command git p push origin '$(git branch --show-current)'
+    abbr --command git l log --oneline --all --graph --reflog
 
 end
 
