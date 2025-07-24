@@ -97,7 +97,6 @@ later(function()
     end
 end)
 
-later(function() require('mini.jump2d').setup() end)
 later(function() require('mini.files').setup() end)
 later(function() require('mini.extra').setup() end)
 later(function() require('mini.bracketed').setup() end)
@@ -108,3 +107,4 @@ later(function() require('mini.completion').setup() end)
 later(function() require('mini.indentscope').setup() end)
 later(function() require('mini.git').setup() end)
 later(function() require('mini.diff').setup() end)
+later(function() require('mini.ai').setup() end)
