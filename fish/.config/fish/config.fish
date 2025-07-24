@@ -42,6 +42,8 @@ if status is-interactive
 
     abbr --add e nvim
 
+    abbr --add pref pre-commit run --files
+
     abbr --command git s status
     abbr --command git nb checkout -b
     abbr --command git dc diff --cached
