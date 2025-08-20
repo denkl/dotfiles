@@ -30,8 +30,10 @@ vim.keymap.set("x", "gp", '"+P', { desc = "Paste from system clipboard" })
 vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
 
 _G.Config.leader_group_clues = {
+  { mode = 'n', keys = '<Leader>a', desc = '+Action' },
   { mode = 'n', keys = '<Leader>e', desc = '+Explore' },
-  { mode = 'n', keys = '<Leader>f', desc = '+Find' },
+  { mode = 'n', keys = '<Leader>f', desc = '+Fuzzy' },
+  { mode = 'n', keys = '<Leader>g', desc = '+Git' },
   { mode = 'n', keys = '<Leader>l', desc = '+LSP' },
 }
 
@@ -49,32 +51,29 @@ end
 -- f is fuzzy
 nmap_leader('fb', '<Cmd>Pick buffers<CR>', 'Buffers')
 nmap_leader('ff', '<Cmd>Pick files<CR>', 'Files')
-nmap_leader('fG', '<Cmd>Pick grep pattern="<cword>"<CR>', 'Grep current word')
 nmap_leader('fg', '<Cmd>Pick grep_live<CR>', 'Grep live')
 nmap_leader('fh', '<Cmd>Pick help<CR>', 'Help tags')
-nmap_leader('fr', '<Cmd>Pick resume<CR>', 'Resume')
-nmap_leader('f/', '<Cmd>Pick history scope="/"<CR>', '"/" history')
-nmap_leader('f:', '<Cmd>Pick history scope=":"<CR>', '":" history')
-nmap_leader('f.', '<Cmd>Pick oldfiles<CR>', 'Recent')
-nmap_leader('fs', '<Cmd>Pick lsp scope="document_symbol"<CR>', 'Document symbols')
 nmap_leader('fl', '<Cmd>Pick buf_lines<CR>', 'Lines (all)')
-nmap_leader('fP', function()
+nmap_leader('fp',function()
     MiniPick.builtin.files(nil, { source = { cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'site') } })
 end, 'Plugins')
-nmap_leader('fD', function()
-    MiniPick.builtin.files({ tool = "git" } , {source = { cwd = "~/.dotfiles" } })
-end, 'Dotfiles')
+nmap_leader('fr', '<Cmd>Pick resume<CR>', 'Resume')
+nmap_leader('fs', '<Cmd>Pick lsp scope="document_symbol"<CR>', 'Document symbols')
+nmap_leader('fw', '<Cmd>Pick grep pattern="<cword>"<CR>', 'Grep <cword>')
+nmap_leader('f:', '<Cmd>Pick history scope=":"<CR>', '":" history')
+nmap_leader('f.', '<Cmd>Pick oldfiles<CR>', 'Recent')
+nmap_leader('f/', '<Cmd>Pick history scope="/"<CR>', '"/" history')
 
 -- l is LSP
-nmap_leader('ld', '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Definition')
+nmap_leader('la', '<Cmd>lua vim.lsp.buf.code_action()<CR>', 'Actions')
 nmap_leader('lD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration')
-nmap_leader('lt', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type definition')
+nmap_leader('ld', '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Definition')
 nmap_leader('lh', '<Cmd>lua vim.lsp.buf.hover()<CR>', 'Hover')
+nmap_leader('lo', '<Cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostic popup')
 nmap_leader('lr', '<Cmd>lua vim.lsp.buf.references()<CR>', 'References')
 nmap_leader('lR', '<Cmd>lua vim.lsp.buf.rename()<CR>', 'Rename')
-nmap_leader('la', '<Cmd>lua vim.lsp.buf.code_action()<CR>', 'Actions')
-nmap_leader('lo', '<Cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostic popup')
 nmap_leader('ls', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>', 'Document symbol')
+nmap_leader('lt', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type definition')
 
 -- e is explore
 nmap_leader('ed', '<Cmd>lua MiniFiles.open()<CR>', 'Directory')
@@ -85,3 +84,8 @@ nmap_leader('eq', '<Cmd>lua Config.toggle_quickfix()<CR>', 'Quickfix')
 nmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>', 'Show at cursor')
 xmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>', 'Show at selection')
 nmap_leader('go', '<Cmd>lua MiniDiff.toggle_overlay()<CR>', 'Toggle overlay')
+
+-- a is action
+nmap_leader('ac', '<Cmd>close<CR>', ':close')
+nmap_leader('ap', '<Cmd>lua Config.copy_path()<CR>', 'Copy buffer path')
+nmap_leader('az', '<Cmd>lua MiniMisc.zoom()<CR>', 'Zoom')

@@ -6,3 +6,9 @@ Config.toggle_quickfix = function()
   end
   vim.cmd('copen')
 end
+
+-- Copy current buffer relative filepath
+Config.copy_path = function()
+    local path = vim.fn.expand('%')
+    vim.fn.setreg('+', path)
+end
