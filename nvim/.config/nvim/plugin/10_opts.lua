@@ -7,11 +7,11 @@ vim.o.splitbelow = true -- put the new window below the current one
 vim.o.splitright = true -- put the new window right of the current one
 -- vim.o.title = true -- change the terminal title according to the currently active buffer
 vim.o.wrap = false -- do not wrap long lines
-vim.wo.cursorline = true -- show which cursor is on
-vim.wo.number = true -- precede each line with its line number
-vim.wo.relativenumber = true -- show the line number relative to the line with the cursor
-vim.wo.scrolloff = 5 -- minimal number of screen lines to keep above and below the cursor
-vim.wo.signcolumn = "yes" -- always draw the signcolumn
+vim.o.cursorline = true -- show which cursor is on
+vim.o.number = true -- precede each line with its line number
+vim.o.relativenumber = true -- show the line number relative to the line with the cursor
+vim.o.scrolloff = 5 -- minimal number of screen lines to keep above and below the cursor
+vim.o.signcolumn = "yes" -- always draw the signcolumn
 
 vim.o.completeopt = "menuone,noselect" -- options for Insert mode completion
 vim.o.expandtab = true -- replace tabs with spaces
