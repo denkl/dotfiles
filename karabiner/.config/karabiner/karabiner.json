@@ -23,7 +23,7 @@
                         ]
                     },
                     {
-                        "description": "left command -> en",
+                        "description": "Left Command -> en",
                         "manipulators": [
                             {
                                 "from": { "key_code": "left_command" },
@@ -40,17 +40,6 @@
                                 "from": { "key_code": "right_command" },
                                 "to": [{ "key_code": "right_command" }],
                                 "to_if_alone": [{ "select_input_source": { "language": "uk" } }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Left Option -> uk",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "left_option" },
-                                "to": [{ "key_code": "left_option" }],
-                                "to_if_alone": [{ "select_input_source": { "language": "ru" } }],
                                 "type": "basic"
                             }
                         ]
