@@ -12,7 +12,7 @@ now(function()
     require('mini.hues').setup({
         background = '#151515',
         foreground = '#e1e1e1',
-        saturation = 'low',
+        saturation = 'lowmedium',
     })
 end)
 
@@ -108,3 +108,4 @@ later(function() require('mini.git').setup() end)
 later(function() require('mini.diff').setup() end)
 later(function() require('mini.ai').setup() end)
 later(function() require('mini.misc').setup() end)
+later(function() require('mini.surround').setup() end)
