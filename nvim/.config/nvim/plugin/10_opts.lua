@@ -13,7 +13,7 @@ vim.o.relativenumber = true -- show the line number relative to the line with th
 vim.o.scrolloff = 5 -- minimal number of screen lines to keep above and below the cursor
 vim.o.signcolumn = "yes" -- always draw the signcolumn
 
-vim.o.completeopt = "menuone,noselect" -- options for Insert mode completion
+vim.o.completeopt = "menuone,noselect,fuzzy,nosort" -- options for Insert mode completion
 vim.o.expandtab = true -- replace tabs with spaces
 vim.o.ignorecase = true -- ignore case in search patterns
 vim.o.shiftwidth = 4 -- number of spaces to use for each step of (auto)indent
