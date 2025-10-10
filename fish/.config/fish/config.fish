@@ -53,6 +53,7 @@ if status is-interactive
     abbr --command git C --set-cursor commit -m '"$(git branch --show-current) %"'
     abbr --command git p push origin '$(git branch --show-current)'
     abbr --command git l log --oneline --all --graph --reflog
+    alias gcp="git ls-files . --exclude-standard --others -m | fzf | tr -d '\n' | pbcopy"
 
 end
 
