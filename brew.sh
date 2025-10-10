@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-echo 'start...'
-
 brew update
 
 brew upgrade
@@ -63,5 +61,3 @@ brew install --cask raycast
 brew install --cask vlc
 
 brew cleanup
-
-echo 'done'
