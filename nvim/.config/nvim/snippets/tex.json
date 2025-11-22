@@ -1,0 +1,56 @@
+{
+    "Enumerate": {
+        "prefix": "enum",
+        "body": ["\\begin{enumerate}", "\t\\item $0", "\\end{enumerate}"],
+        "description": "Add enumerate"
+    },
+    "Itemize": {
+        "prefix": "item",
+        "body": ["\\begin{itemize}", "\t\\item $0", "\\end{itemize}"],
+        "description": "Add itemize"
+    },
+    "Minted": {
+        "prefix": "mint",
+        "body": [
+            "\\begin{minted}[fontsize=${1|\\normalsize,\\small,\\footnotesize,\\scriptsize|}]{${2|python,text,c,bash|}}",
+            "$0",
+            "\\end{minted}"
+        ],
+        "description": "Add minted"
+    },
+    "Inputminted": {
+        "prefix": "imint",
+        "body": ["\\inputminted[fontsize=${1|\\small,\\normalsize,\\footnotesize,\\scriptsize|},linenos]{${2|python,text,c,bash|}}{$0}"],
+        "description": "Add inputminted"
+    },
+    "Figure": {
+        "prefix": "fig",
+        "body": [
+            "\\begin{figure}[ht!]",
+            "\t\\centering",
+            "\t\\includegraphics[width=${1|0.5,0.6,0.7,0.8,0.9,1|}\\textwidth]{${2:fn.jpg}}",
+            "\t\\caption{$0}",
+            "\\end{figure}"
+        ],
+        "description": "Add figure"
+    },
+    "Table": {
+        "prefix": "tab",
+        "body": [
+            "\\begin{table}[h!]",
+            "\t\\centering",
+            "\t\\renewcommand{\\arraystretch}{1.2}",
+            "\t\\begin{tabular}{|c|c|c|}",
+            "\t\t\\\\hline",
+            "\t\tCol 1 & Col 2 & Col 3 \\\\\\\\",
+            "\t\t\\\\hline",
+            "\t\t123 & Text & 42.0 \\\\\\\\",
+            "\t\t\\\\hline",
+            "\t\\end{tabular}",
+            "\t\\caption{$1}",
+            "\t\\label{tab:$0}",
+            "\\end{table}"
+        ],
+        "description": "Add table"
+    }
+}

@@ -109,3 +109,14 @@ later(function() require('mini.diff').setup() end)
 later(function() require('mini.ai').setup() end)
 later(function() require('mini.misc').setup() end)
 later(function() require('mini.surround').setup() end)
+
+local gen_loader = require('mini.snippets').gen_loader
+later(function()
+    require('mini.snippets').setup({
+      snippets = {
+        -- Load snippets based on current language by reading files from
+        -- "snippets/" subdirectories from 'runtimepath' directories.
+        gen_loader.from_lang(),
+      },
+    })
+end)
