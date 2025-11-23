@@ -15,6 +15,8 @@ if status is-interactive
     pyenv virtualenv-init - | source
     set --global --export PYENV_VIRTUALENV_DISABLE_PROMPT 1
 
+    set --global --export RIPGREP_CONFIG_PATH $HOME/.ripgreprc
+
     fish_add_path $HOME/.cargo/env
 
     function __history_previous_command

@@ -1,0 +1,9 @@
+gnupg/.gnupg/*
+!gnupg/.gnupg/gpg-agent.conf
+
+fish/.config/fish/*
+!fish/.config/fish/config.fish
+!fish/.config/fish/fish_plugins
+
+ipython/.ipython/profile_default/*
+!ipython/.ipython/profile_default/ipython_config.py
