@@ -110,6 +110,7 @@ later(function() require('mini.ai').setup() end)
 later(function() require('mini.misc').setup() end)
 later(function() require('mini.surround').setup() end)
 later(function() require('mini.align').setup() end)
+later(function() require('mini.splitjoin').setup() end)
 
 local gen_loader = require('mini.snippets').gen_loader
 later(function()
