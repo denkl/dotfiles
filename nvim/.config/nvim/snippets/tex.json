@@ -29,7 +29,9 @@
             "\\begin{figure}[ht!]",
             "\t\\centering",
             "\t\\includegraphics[width=${1|0.5,0.6,0.7,0.8,0.9,1|}\\textwidth]{${2:fn.jpg}}",
-            "\t\\caption{$0}",
+            "\t\\caption{$3}",
+            "\t\\label{fig:$4}",
+            "\t% (see table~\\ref{fig:$4} on page~\\pageref{fig:$4})",
             "\\end{figure}"
         ],
         "description": "Add figure"
@@ -48,8 +50,8 @@
             "\t\t\\\\hline",
             "\t\\end{tabular}",
             "\t\\caption{$1}",
-            "\t% (see table~\\ref{tab:} on page~\\pageref{tab:})",
             "\t\\label{tab:$0}",
+            "\t% (see table~\\ref{tab:$0} on page~\\pageref{tab:$0})",
             "\\end{table}"
         ],
         "description": "Add table"
