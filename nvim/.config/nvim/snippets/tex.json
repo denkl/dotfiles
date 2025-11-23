@@ -48,6 +48,7 @@
             "\t\t\\\\hline",
             "\t\\end{tabular}",
             "\t\\caption{$1}",
+            "\t% (see table~\\ref{tab:} on page~\\pageref{tab:})",
             "\t\\label{tab:$0}",
             "\\end{table}"
         ],
