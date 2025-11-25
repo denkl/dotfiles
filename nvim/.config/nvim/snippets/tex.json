@@ -31,7 +31,7 @@
             "\t\\includegraphics[width=${1|0.5,0.6,0.7,0.8,0.9,1|}\\textwidth]{${2:fn.jpg}}",
             "\t\\caption{$3}",
             "\t\\label{fig:$4}",
-            "\t% (see table~\\ref{fig:$4} on page~\\pageref{fig:$4})",
+            "\t% (see fig.~\\ref{fig:$4} on page~\\pageref{fig:$4})",
             "\\end{figure}"
         ],
         "description": "Add figure"
