@@ -24,14 +24,8 @@ now(function()
 end)
 
 later(function()
-    add('williamboman/mason.nvim')
-    require('mason').setup()
-end)
-
-later(function()
     add('neovim/nvim-lspconfig')
 
-    vim.lsp.enable('clangd')
     vim.lsp.enable('gopls')
     vim.lsp.enable('lua_ls')
     vim.lsp.enable('ruff')

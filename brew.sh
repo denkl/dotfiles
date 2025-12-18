@@ -31,6 +31,7 @@ brew install kubectl
 brew install lazydocker
 brew install lazygit
 brew install llvm
+brew install lua-language-server
 brew install mitmproxy
 brew install mprocs
 brew install ncdu
