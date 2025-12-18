@@ -50,6 +50,7 @@ brew install tfenv
 brew install tldr
 brew install tokei
 brew install tree
+brew install ty
 brew install wget
 brew install yt-dlp
 
