@@ -1,10 +1,16 @@
+c = get_config()
+
 c.InteractiveShellApp.extensions = [
     'autoreload'
 ]
 c.InteractiveShellApp.exec_lines = [
+    'import collections',
+    'import datetime',
+    'import itertools',
     'import os',
+    'import pathlib',
+    'import random',
     'import sys',
-    'from datetime import datetime, timedelta'
 ]
 c.InteractiveShell.confirm_exit = False
 c.InteractiveShell.editor = 'nvim'
