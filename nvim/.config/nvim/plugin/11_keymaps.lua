@@ -94,6 +94,5 @@ local copy_path = function()
     local path = vim.fn.expand('%')
     vim.fn.setreg('+', path)
 end
-nmap_leader('ac', '<Cmd>close<CR>',               ':close')
 nmap_leader('ap', copy_path,                      'Copy buffer path')
 nmap_leader('az', '<Cmd>lua MiniMisc.zoom()<CR>', 'Zoom')
