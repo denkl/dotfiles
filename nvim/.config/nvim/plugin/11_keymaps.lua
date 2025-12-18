@@ -73,9 +73,16 @@ nmap_leader('ls', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>',    'Document sym
 
 -- e is explore
 local explore_file_dir = '<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>'
-nmap_leader('ed', '<Cmd>lua MiniFiles.open()<CR>',         'Directory')
-nmap_leader('ef', explore_file_dir,                        'File directory')
-nmap_leader('eq', '<Cmd>lua Config.toggle_quickfix()<CR>', 'Quickfix')
+local explore_quickfix = function()
+  local cur_tabnr = vim.fn.tabpagenr()
+  for _, wininfo in ipairs(vim.fn.getwininfo()) do
+    if wininfo.quickfix == 1 and wininfo.tabnr == cur_tabnr then return vim.cmd('cclose') end
+  end
+  vim.cmd('copen')
+end
+nmap_leader('ed', '<Cmd>lua MiniFiles.open()<CR>', 'Directory')
+nmap_leader('ef', explore_file_dir,                'File directory')
+nmap_leader('eq', explore_quickfix,                'Quickfix')
 
 -- g is git
 nmap_leader('go', '<Cmd>lua MiniDiff.toggle_overlay()<CR>', 'Toggle overlay')
@@ -83,6 +90,10 @@ nmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>',  'Show at cursor')
 xmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>',  'Show at selection')
 
 -- a is action
-nmap_leader('ac', '<Cmd>close<CR>',                  ':close')
-nmap_leader('ap', '<Cmd>lua Config.copy_path()<CR>', 'Copy buffer path')
-nmap_leader('az', '<Cmd>lua MiniMisc.zoom()<CR>',    'Zoom')
+local copy_path = function()
+    local path = vim.fn.expand('%')
+    vim.fn.setreg('+', path)
+end
+nmap_leader('ac', '<Cmd>close<CR>',               ':close')
+nmap_leader('ap', copy_path,                      'Copy buffer path')
+nmap_leader('az', '<Cmd>lua MiniMisc.zoom()<CR>', 'Zoom')
