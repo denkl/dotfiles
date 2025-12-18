@@ -68,7 +68,7 @@ nmap_leader('lh', '<Cmd>lua vim.lsp.buf.document_highlight()<CR>', 'Highlight')
 nmap_leader('lc', '<Cmd>lua vim.lsp.buf.clear_references()<CR>', 'Clear')
 nmap_leader('lo', '<Cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostic popup')
 nmap_leader('lr', '<Cmd>lua vim.lsp.buf.references()<CR>', 'References')
-nmap_leader('lR', '<Cmd>lua vim.lsp.buf.rename()<CR>', 'Rename')
+nmap_leader('ln', '<Cmd>lua vim.lsp.buf.rename()<CR>', 'Rename')
 nmap_leader('ls', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>', 'Document symbol')
 nmap_leader('lt', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type definition')
 
