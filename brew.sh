@@ -4,8 +4,6 @@ brew update
 
 brew upgrade
 
-brew tap hashicorp/tap
-
 brew install azure-cli
 brew install bat
 brew install coreutils
@@ -21,8 +19,6 @@ brew install git-delta
 brew install gnupg
 brew install go
 brew install gopls
-brew install hashicorp/tap/terraform
-brew install hashicorp/tap/terraform-ls
 brew install htop
 brew install jq
 brew install kcat
@@ -37,7 +33,6 @@ brew install ncdu
 brew install neovim
 brew install nghttp2
 brew install node
-brew install opentofu
 brew install pv
 brew install pyenv
 brew install pyenv-virtualenv
@@ -45,7 +40,8 @@ brew install ripgrep
 brew install sphinx-doc
 brew install stow
 brew install telnet
-brew install tfenv
+brew install tenv
+brew install terraform-ls
 brew install tldr
 brew install tokei
 brew install tree
