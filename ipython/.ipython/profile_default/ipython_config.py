@@ -14,3 +14,4 @@ c.InteractiveShellApp.exec_lines = [
 ]
 c.InteractiveShell.confirm_exit = False
 c.InteractiveShell.editor = 'nvim'
+c.TerminalIPythonApp.display_banner = False
