@@ -45,6 +45,7 @@ brew install terraform-ls
 brew install tldr
 brew install tokei
 brew install tree
+brew install tree-sitter-cli
 brew install ty
 brew install wget
 brew install yt-dlp
