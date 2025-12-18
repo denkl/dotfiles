@@ -6,7 +6,6 @@ brew upgrade
 
 brew tap hashicorp/tap
 
-brew install ast-grep
 brew install azure-cli
 brew install bat
 brew install coreutils
