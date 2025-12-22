@@ -32,6 +32,7 @@ brew install mprocs
 brew install ncdu
 brew install neovim
 brew install nghttp2
+brew install nmap
 brew install node
 brew install pv
 brew install pyenv
