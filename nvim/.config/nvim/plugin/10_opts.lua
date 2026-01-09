@@ -51,6 +51,15 @@ vim.api.nvim_create_autocmd("TermOpen", {
     desc = "Start builtin terminal in Insert mode",
 })
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+  end,
+})
+
 vim.diagnostic.config({
     -- display source of diagnostics
     virtual_text = { source = true, current_line = true },
