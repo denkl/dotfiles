@@ -6,6 +6,7 @@ vim.lsp.config.ty = {
     settings = {
         ty = {
             diagnosticMode = 'workspace',
+            configurationFile = "~/.config/ty/ty.toml"
         },
     },
 }

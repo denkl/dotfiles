@@ -1,0 +1,4 @@
+[rules]
+# this rules often required because of mypy
+unused-ignore-comment = "ignore"
+redundant-cast = "ignore"

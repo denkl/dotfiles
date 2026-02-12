@@ -7,3 +7,4 @@ stow karabiner
 stow kitty
 stow nvim
 stow ripgrep
+stow ty
