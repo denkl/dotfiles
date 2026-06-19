@@ -10,6 +10,7 @@ now(function()
         "markdown_inline",
         "python",
         "query",
+        "rust",
         "terraform",
     }
     local isnt_installed = function(lang)
@@ -41,4 +42,5 @@ later(function()
     vim.lsp.enable('ruff')
     vim.lsp.enable('terraformls')
     vim.lsp.enable('ty')
+    vim.lsp.enable('rust_analyzer')
 end)
