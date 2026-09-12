@@ -4,10 +4,8 @@ brew update
 
 brew upgrade
 
-brew install azure-cli
 brew install bat
 brew install coreutils
-brew install dust
 brew install fd
 brew install ffmpeg
 brew install fish
@@ -21,9 +19,7 @@ brew install go
 brew install gopls
 brew install htop
 brew install jq
-brew install kcat
 brew install kubectl
-brew install lazydocker
 brew install lazygit
 brew install llvm
 brew install lua-language-server
@@ -35,15 +31,12 @@ brew install nghttp2
 brew install nmap
 brew install node
 brew install pv
-brew install pyenv
-brew install pyenv-virtualenv
 brew install ripgrep
 brew install sphinx-doc
 brew install stow
 brew install telnet
 brew install tenv
 brew install terraform-ls
-brew install tldr
 brew install tokei
 brew install tree
 brew install tree-sitter-cli
