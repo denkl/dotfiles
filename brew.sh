@@ -55,7 +55,6 @@ brew install --cask font-fira-code
 brew install --cask karabiner-elements
 brew install --cask kitty
 brew install --cask ngrok
-brew install --cask raycast
 brew install --cask vlc
 
 brew cleanup
