@@ -25,9 +25,7 @@ vim.keymap.set("x", "gp", '"+P', { desc = "Paste from system clipboard" })
 -- normal mode in terminal
 vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
 
-_G.Config.leader_group_clues = {
-  { mode = 'n', keys = '<Leader>a', desc = '+Action' },
-  { mode = 'n', keys = '<Leader>e', desc = '+Explore' },
+Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>f', desc = '+Fuzzy' },
   { mode = 'n', keys = '<Leader>g', desc = '+Git' },
   { mode = 'n', keys = '<Leader>l', desc = '+LSP' },
@@ -71,7 +69,12 @@ nmap_leader('lo', '<Cmd>lua vim.diagnostic.open_float()<CR>',      'Diagnostic p
 nmap_leader('lr', '<Cmd>lua vim.lsp.buf.references()<CR>',         'References')
 nmap_leader('ls', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>',    'Document symbol')
 
--- e is explore
+-- g is git
+nmap_leader('go', '<Cmd>lua MiniDiff.toggle_overlay()<CR>', 'Toggle overlay')
+nmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>',  'Show at cursor')
+xmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>',  'Show at selection')
+
+
 local explore_file_dir = '<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>'
 local explore_quickfix = function()
   local cur_tabnr = vim.fn.tabpagenr()
@@ -80,19 +83,13 @@ local explore_quickfix = function()
   end
   vim.cmd('copen')
 end
-nmap_leader('ed', '<Cmd>lua MiniFiles.open()<CR>', 'Directory')
-nmap_leader('ef', explore_file_dir,                'File directory')
-nmap_leader('eq', explore_quickfix,                'Quickfix')
+nmap_leader('w', '<Cmd>lua MiniFiles.open()<CR>', 'Directory')
+nmap_leader('e', explore_file_dir,                'File directory')
+nmap_leader('q', explore_quickfix,                'Quickfix')
 
--- g is git
-nmap_leader('go', '<Cmd>lua MiniDiff.toggle_overlay()<CR>', 'Toggle overlay')
-nmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>',  'Show at cursor')
-xmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>',  'Show at selection')
-
--- a is action
 local copy_path = function()
     local path = vim.fn.expand('%')
     vim.fn.setreg('+', path)
 end
-nmap_leader('ap', copy_path,                      'Copy buffer path')
-nmap_leader('az', '<Cmd>lua MiniMisc.zoom()<CR>', 'Zoom')
+nmap_leader('p', copy_path,                      'Copy buffer path')
+nmap_leader('z', '<Cmd>lua MiniMisc.zoom()<CR>', 'Zoom')
