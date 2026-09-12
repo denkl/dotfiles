@@ -113,6 +113,7 @@ later(function() require('mini.align').setup() end)
 later(function() require('mini.splitjoin').setup() end)
 later(function() require('mini.move').setup() end)
 later(function() require('mini.cmdline').setup() end)
+later(function() require('mini.input').setup() end)
 
 local gen_loader = require('mini.snippets').gen_loader
 later(function()
