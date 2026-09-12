@@ -10,11 +10,6 @@ if status is-interactive
 
     set --global tide_right_prompt_items status cmd_duration context jobs direnv python go terraform
 
-    pyenv init --path | source
-    pyenv init - | source
-    pyenv virtualenv-init - | source
-    set --global --export PYENV_VIRTUALENV_DISABLE_PROMPT 1
-
     set --global --export RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 
     fish_add_path $HOME/.cargo/env
