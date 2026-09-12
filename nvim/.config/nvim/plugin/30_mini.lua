@@ -1,4 +1,4 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+local now, later = Config.now, Config.later
 
 now(function() require('mini.icons').setup() end)
 

@@ -1,13 +1,23 @@
-local mini_path = vim.fn.stdpath('data') .. '/site/pack/deps/start/mini.nvim'
-if not vim.loop.fs_stat(mini_path) then
-  vim.cmd('echo "Installing `mini.nvim`" | redraw')
-  local origin = 'https://github.com/nvim-mini/mini.nvim'
-  local clone_cmd = { 'git', 'clone', '--filter=blob:none', origin, mini_path }
-  vim.fn.system(clone_cmd)
-  vim.cmd('packadd mini.nvim | helptags ALL')
-  vim.cmd('echo "Installed `mini.nvim`" | redraw')
+_G.Config = {}
+
+local gr = vim.api.nvim_create_augroup('custom-config', {})
+Config.new_autocmd = function(event, pattern, callback, desc)
+  local opts = { group = gr, pattern = pattern, callback = callback, desc = desc }
+  vim.api.nvim_create_autocmd(event, opts)
 end
 
-require('mini.deps').setup()
+Config.on_packchanged = function(plugin_name, kinds, callback, desc)
+  local f = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if not (name == plugin_name and vim.tbl_contains(kinds, kind)) then return end
+    if not ev.data.active then vim.cmd.packadd(plugin_name) end
+    callback(ev.data)
+  end
+  Config.new_autocmd('PackChanged', '*', f, desc)
+end
 
-_G.Config = {}
+vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
+
+local misc = require('mini.misc')
+Config.now = function(f) misc.safely('now', f) end
+Config.later = function(f) misc.safely('later', f) end

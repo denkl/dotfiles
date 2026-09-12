@@ -1,10 +1,11 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+local now, later = Config.now, Config.later
 
 now(function()
-    add({
-        source = 'nvim-treesitter/nvim-treesitter',
-        hooks = { post_checkout = function() vim.cmd('TSUpdate') end},
-    })
+    local ts_update = function() vim.cmd('TSUpdate') end
+    Config.on_packchanged('nvim-treesitter', { 'update' }, ts_update, ':TSUpdate')
+
+    vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
+
     local languages = {
         "go",
         "markdown_inline",
@@ -13,6 +14,7 @@ now(function()
         "rust",
         "terraform",
     }
+
     local isnt_installed = function(lang)
         return #vim.api.nvim_get_runtime_file('parser/' .. lang .. '.*', false) == 0
     end
@@ -26,16 +28,13 @@ now(function()
             table.insert(filetypes, ft)
         end
     end
+
     local ts_start = function(ev) vim.treesitter.start(ev.buf) end
-    vim.api.nvim_create_autocmd('FileType', {
-        pattern = filetypes,
-        callback = ts_start,
-        desc = 'Start tree-sitter'
-    })
+    Config.new_autocmd('FileType', filetypes, ts_start, 'Start tree-sitter')
 end)
 
 later(function()
-    add('neovim/nvim-lspconfig')
+    vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' })
 
     vim.lsp.enable('gopls')
     vim.lsp.enable('lua_ls')
