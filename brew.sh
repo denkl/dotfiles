@@ -5,7 +5,11 @@ brew update
 brew upgrade
 
 brew install bat
+brew install colima
 brew install coreutils
+brew install docker
+brew install docker-buildx
+brew install docker-compose
 brew install fd
 brew install ffmpeg
 brew install fish
@@ -51,3 +55,5 @@ brew install --cask ngrok
 brew install --cask vlc
 
 brew cleanup
+
+brew services start colima

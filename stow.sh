@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+stow docker
 stow fish
 stow git
 stow gnupg
