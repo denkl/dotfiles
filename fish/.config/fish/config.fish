@@ -12,6 +12,8 @@ if status is-interactive
 
     set --global --export RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 
+    set --global --export DOCKER_HOST "unix://$HOME/.colima/default/docker.sock"
+
     fish_add_path $HOME/.cargo/env
 
     function __history_previous_command
