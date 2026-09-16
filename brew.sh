@@ -40,7 +40,6 @@ brew install sphinx-doc
 brew install stow
 brew install telnet
 brew install tenv
-brew install terraform-ls
 brew install tokei
 brew install tree
 brew install tree-sitter-cli
