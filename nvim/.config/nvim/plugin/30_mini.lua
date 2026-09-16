@@ -25,33 +25,26 @@ later(function()
     local miniclue = require('mini.clue')
     miniclue.setup({
       triggers = {
-        -- Leader triggers
         { mode = 'n', keys = '<Leader>' },
         { mode = 'x', keys = '<Leader>' },
 
-        -- Built-in completion
         { mode = 'i', keys = '<C-x>' },
 
-        -- `g` key
         { mode = 'n', keys = 'g' },
         { mode = 'x', keys = 'g' },
 
-        -- Marks
         { mode = 'n', keys = "'" },
         { mode = 'n', keys = '`' },
         { mode = 'x', keys = "'" },
         { mode = 'x', keys = '`' },
 
-        -- Registers
         { mode = 'n', keys = '"' },
         { mode = 'x', keys = '"' },
         { mode = 'i', keys = '<C-r>' },
         { mode = 'c', keys = '<C-r>' },
 
-        -- Window commands
         { mode = 'n', keys = '<C-w>' },
 
-        -- `z` key
         { mode = 'n', keys = 'z' },
         { mode = 'x', keys = 'z' },
 
@@ -97,12 +90,22 @@ later(function()
     end
 end)
 
-later(function() require('mini.files').setup() end)
-later(function() require('mini.extra').setup() end)
-later(function() require('mini.bracketed').setup() end)
 later(function() require('mini.operators').setup({
     replace = { prefix = 'gX' }
 }) end)
+
+local gen_loader = require('mini.snippets').gen_loader
+later(function()
+    require('mini.snippets').setup({
+      snippets = {
+        gen_loader.from_lang(),
+      },
+    })
+end)
+
+later(function() require('mini.files').setup() end)
+later(function() require('mini.extra').setup() end)
+later(function() require('mini.bracketed').setup() end)
 later(function() require('mini.completion').setup() end)
 later(function() require('mini.git').setup() end)
 later(function() require('mini.diff').setup() end)
@@ -114,14 +117,3 @@ later(function() require('mini.splitjoin').setup() end)
 later(function() require('mini.move').setup() end)
 later(function() require('mini.cmdline').setup() end)
 later(function() require('mini.input').setup() end)
-
-local gen_loader = require('mini.snippets').gen_loader
-later(function()
-    require('mini.snippets').setup({
-      snippets = {
-        -- Load snippets based on current language by reading files from
-        -- "snippets/" subdirectories from 'runtimepath' directories.
-        gen_loader.from_lang(),
-      },
-    })
-end)
