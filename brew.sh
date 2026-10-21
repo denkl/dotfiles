@@ -10,6 +10,7 @@ brew install coreutils
 brew install docker
 brew install docker-buildx
 brew install docker-compose
+brew install docx2txt
 brew install fd
 brew install ffmpeg
 brew install fish
