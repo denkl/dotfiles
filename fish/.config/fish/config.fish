@@ -38,9 +38,16 @@ if status is-interactive
     bind ! __history_previous_command
     bind '$' __history_previous_command_arguments
 
+    function _gss; echo (git diff --name-only --cached | fzf -m | string escape); end
+    function _gsm; echo (git ls-files -m | fzf -m | string escape); end
+
+    abbr -a gss --position anywhere --function _gss
+    abbr -a gsm --position anywhere --function _gsm
+
     abbr --add e nvim
 
     abbr --add pref pre-commit run --files
+    abbr --add pyq pytest --show-capture=no
 
     abbr --command git s status
     abbr --command git nb checkout -b
