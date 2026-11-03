@@ -16,15 +16,6 @@ if status is-interactive
 
     fish_add_path $HOME/.cargo/env
 
-    function __history_previous_command
-        switch (commandline -t)
-            case "!"
-                commandline -t $history[1]; commandline -f repaint
-            case "*"
-                commandline -i !
-        end
-    end
-
     function __history_previous_command_arguments
         switch (commandline -t)
             case "!"
@@ -34,9 +25,17 @@ if status is-interactive
                 commandline -i '$'
         end
     end
+    function __history_previous_command_name
+        switch (commandline -t)
+            case "!"
+                commandline -t (string split -f1 ' ' -- $history[1]); commandline -f repaint
+            case "*"
+                commandline -i 0
+        end
+    end
 
-    bind ! __history_previous_command
     bind '$' __history_previous_command_arguments
+    bind 0 __history_previous_command_name
 
     function _gss; echo (git diff --name-only --cached | fzf -m | string escape); end
     function _gsm; echo (git ls-files -m | fzf -m | string escape); end
