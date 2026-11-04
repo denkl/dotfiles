@@ -58,6 +58,8 @@ if status is-interactive
     abbr --command git p push origin '$(git branch --show-current)'
     abbr --command git l log --oneline --all --graph --reflog
 
+    abbr -a chs "nvim -c 'lua vim.defer_fn(function() vim.cmd(\"Pick buf_lines\") end, 100)' ~/workspace/github/chsh/README.md"
+
 end
 
 # The next line updates PATH for the Google Cloud SDK.

@@ -67,7 +67,7 @@ later(function()
     })
 end)
 
-later(function()
+now(function()
     local minipick = require('mini.pick')
 
     local win_config = function()
@@ -104,7 +104,7 @@ later(function()
 end)
 
 later(function() require('mini.files').setup() end)
-later(function() require('mini.extra').setup() end)
+now(function() require('mini.extra').setup() end)
 later(function() require('mini.bracketed').setup() end)
 later(function() require('mini.completion').setup() end)
 later(function() require('mini.git').setup() end)
