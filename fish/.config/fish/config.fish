@@ -39,9 +39,11 @@ if status is-interactive
 
     function _gss; echo (git diff --name-only --cached | fzf -m | string escape); end
     function _gsm; echo (git ls-files -m | fzf -m | string escape); end
+    function _gsu; echo (git ls-files --others --exclude-standard | fzf -m | string escape); end
 
     abbr -a gss --position anywhere --function _gss
     abbr -a gsm --position anywhere --function _gsm
+    abbr -a gsu --position anywhere --function _gsu
 
     abbr --add e nvim
 
