@@ -7,7 +7,7 @@
     autocrlf = false
     safecrlf = true
 [push]
-    default = matching
+    default = current
 [pager]
     diff = delta
     log = delta
