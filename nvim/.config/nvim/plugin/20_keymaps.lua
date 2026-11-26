@@ -70,6 +70,8 @@ nmap_leader('lr', '<Cmd>lua vim.lsp.buf.references()<CR>',         'References')
 nmap_leader('ls', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>',    'Document symbol')
 
 -- g is git
+nmap_leader('gh', '<Cmd>Pick git_hunks<CR>',                'Hunks (unreviewed)')
+nmap_leader('gH', '<Cmd>Pick git_hunks scope="staged"<CR>', 'Hunks (reviewed)')
 nmap_leader('go', '<Cmd>lua MiniDiff.toggle_overlay()<CR>', 'Toggle overlay')
 nmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>',  'Show at cursor')
 xmap_leader('gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>',  'Show at selection')
