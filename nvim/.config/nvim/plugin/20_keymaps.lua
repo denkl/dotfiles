@@ -91,5 +91,13 @@ local copy_path = function()
     local path = vim.fn.expand('%')
     vim.fn.setreg('+', path)
 end
+local copy_path_line = function()
+    local from, to = vim.fn.line('v'), vim.fn.line('.')
+    if from > to then from, to = to, from end
+    local loc = from == to and from or (from .. '-' .. to)
+    vim.fn.setreg('+', vim.fn.expand('%') .. ':' .. loc)
+end
 nmap_leader('p', copy_path,                      'Copy buffer path')
+nmap_leader('P', copy_path_line,                 'Copy path:line')
+xmap_leader('p', copy_path_line,                 'Copy path:lines')
 nmap_leader('z', '<Cmd>lua MiniMisc.zoom()<CR>', 'Zoom')
