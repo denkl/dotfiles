@@ -1,5 +1,5 @@
-function wtab --description 'Open a kitty tab for a worktree: nvim, claude, shell'
-    set -l title (string replace -r '^SCALRCORE-' '' -- $argv[1])
+function wtab --description 'Open a kitty tab for a worktree'
+    set -l title (string split -- - $argv[1])[-1]
     kitty @ focus-tab --match "title:^$title\$" 2>/dev/null; and return
     set -l prev $PWD
     wt $argv[1]; or return
