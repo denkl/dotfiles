@@ -1,5 +1,7 @@
 if status is-interactive
 
+    set --global --prepend fish_function_path ~/.config/fish/my_functions
+
     fish_add_path /opt/homebrew/bin
 
     set --global fish_greeting
@@ -16,30 +18,8 @@ if status is-interactive
 
     fish_add_path $HOME/.cargo/env
 
-    function __history_previous_command_arguments
-        switch (commandline -t)
-            case "!"
-                commandline -t ""
-                commandline -f history-token-search-backward
-            case "*"
-                commandline -i '$'
-        end
-    end
-    function __history_previous_command_name
-        switch (commandline -t)
-            case "!"
-                commandline -t (string split -f1 ' ' -- $history[1]); commandline -f repaint
-            case "*"
-                commandline -i 0
-        end
-    end
-
     bind '$' __history_previous_command_arguments
     bind 0 __history_previous_command_name
-
-    function _gss; echo (git diff --name-only --cached | fzf -m | string escape); end
-    function _gsm; echo (git ls-files -m | fzf -m | string escape); end
-    function _gsu; echo (git ls-files --others --exclude-standard | fzf -m | string escape); end
 
     abbr -a gss --position anywhere --function _gss
     abbr -a gsm --position anywhere --function _gsm
